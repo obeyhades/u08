@@ -7,7 +7,5 @@ export const routes: Routes = [
   {path: '', component: StartSiteComponent},
   {path: 'login', component: LoginPageComponent},
   {path: 'register', component:RegisterPageComponent},
-
-
 ];
 
