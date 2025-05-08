@@ -2,4 +2,49 @@
 
 
 
-<app-start-bg></app-start-bg>
+<app-start-bg>
+
+    <div class="bg-white p-10 rounded-xl shadow-md w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-6 text-center">
+          Log in to your account
+        </h2>
+
+        <form id="loginform" class="space-y-4">
+          <div>
+            <label class="block mb-1 text-sm font-medium">Username</label>
+            <input
+              id="username-input"
+              type="text"
+              placeholder="Enter username"
+              class="w-full p-2 border border-gray-300 rounded"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="block mb-1 text-sm font-medium">Password</label>
+            <input
+              id="password-input"
+              type="password"
+              placeholder="Enter password"
+              class="w-full p-2 border border-gray-300 rounded"
+              required
+            />
+          </div>
+          <button
+            id="submit-btn"
+            type="submit"
+            class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          >
+            Log in
+          </button>
+        </form>
+        <p class="text-center text-sm text-gray-600 mt-4">
+          Don’t have an account?
+          <a routerLink="/register" class="text-blue-600 hover:underline"
+            >Create one</a
+          >
+        </p>
+      </div>
+
+</app-start-bg>

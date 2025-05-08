@@ -8,6 +8,7 @@
             <input
               id="emailReg"
               type="email"
+              required
               placeholder="Enter email"
               class="w-full p-2 border border-gray-300 rounded"
             />
@@ -15,6 +16,7 @@
             <input
               id="usernameReg"
               type="text"
+              required
               placeholder="Username"
               class="w-full p-2 border border-gray-300 rounded"
             />
@@ -25,6 +27,7 @@
             <input
               id="passwordReg"
               type="password"
+              required
               placeholder="Enter password"
               class="w-full p-2 border border-gray-300 rounded"
             />
@@ -38,7 +41,7 @@
         </form>
         <p class="text-center text-sm text-gray-600 mt-4">
           Alreay Have An Account?
-          <a href="login.html" class="text-blue-600 hover:underline">Log In</a>
+          <a routerLink="/login" class="text-blue-600 hover:underline">Log In</a>
         </p>
       </div>
 </app-start-bg>

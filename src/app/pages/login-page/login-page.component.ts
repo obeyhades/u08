@@ -4,7 +4,7 @@ import { StartBgComponent } from "../../components/start-bg/start-bg.component";
 
 @Component({
   selector: 'app-login-page',
-  imports: [StartBgComponent],
+  imports: [StartBgComponent, RouterLink],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
 })
