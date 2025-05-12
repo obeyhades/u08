@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-start-bg',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './start-bg.component.html',
   styleUrl: './start-bg.component.css'
 })
