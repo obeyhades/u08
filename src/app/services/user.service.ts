@@ -24,4 +24,8 @@ export class UserService {
   logIn(credentials: {username: string, password: string}): Observable<{accessToken: string}> {
     return this.http.post<{accessToken: string}>(`${this.url}/user/login`,credentials);
   }
+
+  register(credentials: {username: string, email: string, password: string}): Observable<{user: User}> {
+    return this.http.post<{user: User}>(`${this.url}/user`,credentials);
+  }
 }
