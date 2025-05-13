@@ -5,7 +5,7 @@ import { EditprofileBgComponent } from "../../components/editprofile-bg/editprof
 
 @Component({
   selector: 'app-edit-profile',
-  imports: [NavbarComponent, StartBgComponent, EditprofileBgComponent],
+  imports: [NavbarComponent, EditprofileBgComponent],
   templateUrl: './edit-profile.component.html',
   styleUrl: './edit-profile.component.css'
 })
