@@ -21,7 +21,7 @@ export class UserService {
     return this.http.get<User[]>(`${this.url}/user`);
   }
 
-  logIn(credentials: {username: string, password: string}): Observable<User> {
-    return this.http.post<User>(`${this.url}/user/login`,credentials);
+  logIn(credentials: {username: string, password: string}): Observable<{accessToken: string}> {
+    return this.http.post<{accessToken: string}>(`${this.url}/user/login`,credentials);
   }
 }
