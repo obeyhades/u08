@@ -10,6 +10,6 @@ export const routes: Routes = [
   {path: 'login', component: LoginPageComponent},
   {path: 'register', component:RegisterPageComponent},
   {path: 'mainpage', component:MainPageComponent},
-  {path: 'editProfile', component:EditProfileComponent}
+  {path: 'editProfile/:id', component:EditProfileComponent}
 ];
 
