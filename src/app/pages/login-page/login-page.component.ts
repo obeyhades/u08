@@ -12,8 +12,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './login-page.component.css'
 })
 export class LoginPageComponent {
-  router: any;
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
   loginForm: FormGroup = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')
@@ -25,8 +24,9 @@ export class LoginPageComponent {
   this.userService.logIn(credentials).subscribe({
       next: response => {
         console.log(response);
-        this.router.navigate(['/mainpage']);
+        this.userService.setUserId(response.user_id)
         localStorage.setItem('accesstoken', response.accessToken);
+        this.router.navigate(['/mainpage']);
       },
       error: err => {
         console.log(err);

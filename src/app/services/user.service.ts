@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 
 export interface User {
   id: number;
@@ -14,18 +15,31 @@ export interface User {
 })
 export class UserService {
   private url = 'http://localhost:8080' //'https://moneytracker-hw96.onrender.com';
-
+  private userId = new BehaviorSubject<number>(0)
+  userId$ = this.userId.asObservable();
   constructor(private http: HttpClient) { }
+  
+  setUserId(id: number) {
+    this.userId.next(id);
+  }
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.url}/user`);
   }
 
-  logIn(credentials: {username: string, password: string}): Observable<{accessToken: string}> {
-    return this.http.post<{accessToken: string}>(`${this.url}/user/login`,credentials);
+  logIn(credentials: {username: string, password: string}): Observable<{accessToken: string, user_id: number}> {
+    return this.http.post<{accessToken: string, user_id: number}>(`${this.url}/user/login`,credentials);
   }
 
   register(credentials: {username: string, email: string, password: string}): Observable<{user: User}> {
     return this.http.post<{user: User}>(`${this.url}/user`,credentials);
+  }
+
+  deleteUser(credentials: {accessToken: string}): Observable<{user: User}> {
+    return this.http.delete<{user: User}>(`${this.url}/user`, {body: credentials});
+  }
+
+  updateUser(credentials: {username: string, email: string, password: string}, userId: string): Observable<{user: User}> {
+      return this.http.put<{user: User}>(`${this.url}/user/${userId}`, credentials);
   }
 }
