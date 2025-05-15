@@ -4,11 +4,19 @@ import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 
 export interface User {
-  id: number;
+  id: string;
   username: string;
   email: string;
   password: string;
   }
+
+  export interface UserExpenses {
+   userId: string;
+   amount: number;
+   category: string;
+   description: string;
+
+    }
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +35,10 @@ export class UserService {
     return this.http.get<User[]>(`${this.url}/user`);
   }
 
+  getUserExpenses (userId:string): Observable<UserExpenses[]> {
+    return this.http.get<UserExpenses[]>(`${this.url}/expense/${userId}`)
+  }
+
   logIn(credentials: {username: string, password: string}): Observable<{accessToken: string, user_id: number}> {
     return this.http.post<{accessToken: string, user_id: number}>(`${this.url}/user/login`,credentials);
   }
@@ -35,8 +47,8 @@ export class UserService {
     return this.http.post<{user: User}>(`${this.url}/user`,credentials);
   }
 
-  deleteUser(credentials: {accessToken: string}): Observable<{user: User}> {
-    return this.http.delete<{user: User}>(`${this.url}/user`, {body: credentials});
+  deleteUser (userId: string): Observable<{user: User}> {
+    return this.http.delete<{user: User}>(`${this.url}/user/${userId}`);
   }
 
   updateUser(credentials: {username: string, email: string, password: string}, userId: string): Observable<{user: User}> {

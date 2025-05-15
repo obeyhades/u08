@@ -22,11 +22,6 @@ export class EditProfileComponent {
       password: new FormControl('')
     })
    }
- /*editProfileForm: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl('')
-  }); */
 
   onSubmit() {
     console.log(this.editProfileForm.value)
@@ -47,5 +42,22 @@ export class EditProfileComponent {
       }
     })
   }
-  
+
+  deleteAccount(){
+    const userId = this.route.snapshot.paramMap.get('id');
+    console.log(userId);
+    
+    this.userService.deleteUser(userId!).subscribe({
+      next: (response: {user: User}) => {
+        console.log(response);
+      },
+      error: (err: unknown) => {
+        if (err instanceof Error) {
+          console.log(err.message);
+        }
+    }
+  })
+  }
+
+
 }
