@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NavbarComponent } from "../../components/navbar/navbar.component";
+import { UserExpenses } from '../../services/user.service';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../../services/user.service';
+
 
 
 @Component({
@@ -9,5 +13,23 @@ import { NavbarComponent } from "../../components/navbar/navbar.component";
   styleUrl: './main-page.component.css'
 })
 export class MainPageComponent {
+  private route = inject(ActivatedRoute)
+  constructor(private userService: UserService) { }
+  
+  getExpenses() {
+    const userId = this.route.snapshot.paramMap.get('id');
+    if (!userId) {
+      console.error('Something went wrong');
+      return;
+    }
+    this.userService.getUserExpenses(userId).subscribe({
+      next: (data: UserExpenses[]) => {
+        console.log();
+        
+      }
+    });
+  }
+ 
+  
 
 }
