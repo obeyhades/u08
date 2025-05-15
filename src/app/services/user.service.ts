@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Observable, switchMap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface User {
   id: string;
@@ -22,7 +23,8 @@ export interface User {
   providedIn: 'root'
 })
 export class UserService {
-  private url = 'http://localhost:8080' //'https://moneytracker-hw96.onrender.com';
+  private url = environment.serverurl;
+  
   private userId = new BehaviorSubject<number>(0)
   userId$ = this.userId.asObservable();
   constructor(private http: HttpClient) { }
