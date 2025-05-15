@@ -26,7 +26,7 @@ export class LoginPageComponent {
         console.log(response);
         this.userService.setUserId(response.user_id)
         localStorage.setItem('accesstoken', response.accessToken);
-        this.router.navigate(['/mainpage']);
+        this.router.navigate([`/mainpage/${response.user_id}`]);
       },
       error: err => {
         console.log(err);

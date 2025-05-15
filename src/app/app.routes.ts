@@ -9,7 +9,7 @@ export const routes: Routes = [
   {path: '', component: StartSiteComponent},
   {path: 'login', component: LoginPageComponent},
   {path: 'register', component:RegisterPageComponent},
-  {path: 'mainpage', component:MainPageComponent},
+  {path: 'mainpage/:id', component:MainPageComponent},
   {path: 'editProfile/:id', component:EditProfileComponent}
 ];
 
