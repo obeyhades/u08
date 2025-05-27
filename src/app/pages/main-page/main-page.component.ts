@@ -59,13 +59,13 @@ export class MainPageComponent implements OnInit {
     }
 
     const newExpense: UserExpenses = {
-      userId: this.userId, // <== Viktigt!
+      userId: this.userId,
       amount,
       category,
       description,
     };
 
-    console.log('Creating expense:', newExpense); // Debug
+    console.log('Creating expense:', newExpense);
 
     this.userService.createExpense(newExpense).subscribe({
       next: () => this.getExpenses(),
