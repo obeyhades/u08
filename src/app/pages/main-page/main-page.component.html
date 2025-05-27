@@ -1,38 +1,43 @@
 <div class="bg-white text-gray-900 font-sans min-h-screen flex flex-col items-center justify-center p-4">
   <app-navbar></app-navbar>
 
-  <h1 id="totalAmount" class="text-4xl font-bold mb-10">$0</h1>
-
+  <h1 id="totalAmount" class="text-4xl font-bold mb-10">
+    ${{ incomeTotal - expenseTotal - savingsTotal }}
+  </h1>
 
   <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md space-y-6">
     <div class="flex justify-between items-center">
       <div>
         <p class="text-gray-500">Income</p>
-        <p class="font-bold">$x/mo</p>
+        <p class="font-bold">${{ incomeTotal }}/mo</p>
       </div>
-      <button id="addIncomeBtn" class="text-xl font-bold">+</button>
+      <button (click)="addQuickExpense('income')" class="text-xl font-bold">+</button>
     </div>
 
     <div class="flex justify-between items-center">
       <div>
         <p class="text-gray-500">Savings</p>
-        <p class="font-bold">$x/mo</p>
+        <p class="font-bold">${{ savingsTotal }}/mo</p>
       </div>
-      <button class="text-xl font-bold">+</button>
+      <button (click)="addQuickExpense('savings')" class="text-xl font-bold">+</button>
     </div>
 
     <div class="flex justify-between items-center">
       <div>
         <p class="text-gray-500">Expense</p>
-        <p class="font-bold">$x/mo</p>
+        <p class="font-bold">${{ expenseTotal }}/mo</p>
       </div>
-      <button id="expenseBtn"
-      (click)="getExpenses()" class="text-xl font-bold">+</button>
-
+      <button (click)="addQuickExpense('expense')" class="text-xl font-bold">+</button>
     </div>
   </div>
-  @for (expense of expenses; track expense){
-    	<p>{{expense.amount}}</p>
-      <p>{{expense.description}}</p>
-  }
+
+  <div *ngFor="let expense of expenses" class="mt-4 w-full max-w-md border-b pb-2 flex justify-between items-center">
+    <div>
+      <p class="font-semibold">{{ expense.description || 'No description' }}</p>
+      <p class="text-sm text-gray-500">
+        ${{ expense.amount }} - {{ expense.category }}
+      </p>
+    </div>_
+    <button (click)="deleteExpense(expense._id!)" class="text-sm ml-2">🗑</button>
+  </div>
 </div>
