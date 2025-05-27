@@ -12,12 +12,15 @@ export interface User {
   }
 
   export interface UserExpenses {
+   _id?: string;
    userId: string;
    amount: number;
-   category: string;
+   category: 'income' | 'savings' | 'expense';
    description: string;
 
     }
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -56,4 +59,15 @@ export class UserService {
   updateUser(credentials: {username: string, email: string, password: string}, userId: string): Observable<{user: User}> {
       return this.http.put<{user: User}>(`${this.url}/user/${userId}`, credentials);
   }
+
+  createExpense(newExpense: UserExpenses): Observable<UserExpenses> {
+  return this.http.post<UserExpenses>(`${this.url}/expense`, newExpense);
+}
+
+deleteExpense(id: string) {
+  return this.http.delete<{message: string}>(`${this.url}/expense/${id}`);
+}
+
+
+
 }
